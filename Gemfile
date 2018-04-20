@@ -39,6 +39,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Authentication
 gem 'devise'
 
+# Stripe API
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+# Env
+gem 'dotenv-rails', groups: [:development, :test]
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

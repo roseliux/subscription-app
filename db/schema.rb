@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_04_23_172148) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "publications", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_04_23_172148) do
   create_table "subscriptions", force: :cascade do |t|
     t.string "stripe_user_id"
     t.boolean "active", default: false, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
@@ -55,4 +58,5 @@ ActiveRecord::Schema.define(version: 2018_04_23_172148) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "subscriptions", "users"
 end
